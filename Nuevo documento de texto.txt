@@ -1,2 +1,83 @@
 sdgeioj
 egaw
+int o;
+            for(o =1000; o <= 20000; o = o + 2000)
+            {
+                int[] numeros = new int[o];
+                int[] copianumeros = new int[o];
+                OmplirTaula(numeros, 50, 501);
+                DuplicarTaula(numeros,copianumeros);
+                DateTime DataHoraInici = DateTime.Now;
+                Inserccio(numeros);
+                DateTime DataHoraFinal = DateTime.Now;
+                TimeSpan diferencia = DataHoraFinal - DataHoraInici;
+                Console.WriteLine("Amb el metode de inserrcio el bucle ha tardat per " + o + " volta " + diferencia.TotalMilliseconds + " miliseconds");
+                DateTime DataHoraInici2 = DateTime.Now;
+                OrdenacioBubble(copianumeros);
+                DateTime DataHoraFinal2 = DateTime.Now;
+                TimeSpan diferencia2 = DataHoraFinal2 - DataHoraInici2;
+                Console.WriteLine("Amb el meotode de ordenacio bubble per cada volta de " + o + " ha tardat " + diferencia2.TotalMilliseconds + " miliseconds");
+                Console.WriteLine("------------------------------------------------------------------");
+            }
+
+
+
+
+
+
+        }
+        static void OmplirTaula(int[] numeros, int min, int max)
+        {
+                int i = 0;
+                Random rnd = new Random();
+                for (i = 0; i < numeros.Length; i++)
+                {
+                    numeros[i] = rnd.Next(min, max );
+                }
+        }
+        static void DuplicarTaula(int[] numeros, int[] copia)
+        {
+            int[] copianumeros = numeros.Clone() as int[];
+
+        }
+        static void MostrarTaula(int[] numeros)
+        {
+            int i = 0;
+            for (i = 0; i < numeros.Length; i++)
+            {
+                Console.Write(numeros[i] + " , ");
+            }
+            Console.WriteLine();
+        }
+        static void Inserccio(int[] numeros)//PER LA PRIMERA TAULA
+        {
+            int n = numeros.Length;
+            for(int i = 1; i < n; i++)
+            {
+                int clau = numeros[i];
+                int j = i - 1;
+
+                while(j>= 0 && numeros[j] > clau)
+                {
+                    numeros[j +1] = numeros[j];
+                    j = j - 1;
+                }
+                numeros[j +1] = clau;
+            }
+        }
+
+        static void OrdenacioBubble(int[]copianumeros)//PER LA SEGONA TAULA
+        {
+            int n = copianumeros.Length;
+            int i, j ;
+            for (i = 0; i< n -1; i++)
+                for(j = 0; j < n - i - 1; j++)
+                    if (copianumeros[j] > copianumeros[j + 1])
+                    {
+                        int temps = copianumeros[j];
+                        copianumeros[j] = copianumeros[j + 1];
+                        copianumeros[j + 1] = temps;
+                    }
+        }
+
+    }
